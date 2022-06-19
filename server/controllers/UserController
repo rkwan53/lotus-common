@@ -1,0 +1,8 @@
+import { models } from "mongoose";
+
+const AdminUser = require ('../models/adminModel');
+const userController = {};
+
+userController.createAdmin = (req, res, next) => {
+  req.body 
+}
