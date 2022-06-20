@@ -1,10 +1,11 @@
 import React from 'react';
-import Login from './components/Login';
+import RandomJoke from './components/RandomJoke';
 
 export default function App() {
   return (
     <div id="app">
-      <Login />
+      <RandomJoke />
+      <button type="button">Save</button>
     </div>
   );
 }

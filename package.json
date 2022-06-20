@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/rkwan53/gs-planning-v2#readme",
   "dependencies": {
+    "axios": "^0.27.2",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mongodb": "^4.7.0",

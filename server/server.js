@@ -2,11 +2,13 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
+
 require('dotenv').config();
 
 const port = 3000;
 const mongoURI = process.env.URI;
 
+const textController = require('./controllers/textController');
 mongoose.connect(mongoURI);
 
 app.use(express.json());
@@ -16,8 +18,11 @@ app.use(express.urlencoded());
 app.use('/build', express.static(path.join(__dirname, '../build')));
 
 // serve index.html on the route '/'
-app.get('/', (req, res) => {
+app.get('/', textController.getText, (req, res) => {
+  const [Text, setText] = useState('');
   console.log('in get homepage');
+  // axios.get(process.env.api).then((data) => console.log(data));
+
   return res
     .status(200)
     .sendFile(path.resolve(__dirname, '../public/index.html'));
