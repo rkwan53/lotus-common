@@ -1,11 +1,22 @@
 import React from 'react';
-import RandomJoke from './components/RandomJoke';
+import Quote from './components/Quote';
 
 export default function App() {
   return (
+    <>
     <div id="app">
-      <RandomJoke />
-      <button type="button">Save</button>
+        <Quote />
+        <button type="button">Save</button>
     </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navbar />}>
+          <Route index element={<Home />} />
+          <Route path="savedQuotes" element={<Blogs />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+    </>
   );
 }

@@ -3,42 +3,34 @@
 
 const recentQuote = require('../models/recentQuoteModel');
 const axios = require('axios');
+const savedQuote = require('../models/savedQuoteModel');
 const quoteController = {};
 
 quoteController.getQuote = (req, res, next) => {
-  // const options = {
-  //   method: 'GET',
-  //   url: process.env.api,
-  //   params: {
-  //     'exclude-tags': 'nsfw',
-  //     keywords: 'rocket',
-  //     'min-rating': '7',
-  //     'include-tags': 'knock_knock',
-  //   },
-  // };
-
-  //   axios
-  //     .get('https://type.fit/api/quotes')
-  //     .then((response) => {
-  //       console.log(response[0]);
-  //     })
-  //     .catch(function (error) {
-  //       console.error(error);
-  //     });
-  //   res.status(204);
-  //   return next();
-  // };
-
+  //generate random number to access a quote from the API
+  let quoteNum = Math.floor(Math.random() * 1500);
+  console.log('random number =', quoteNum);
   axios
     .get('https://type.fit/api/quotes')
     .then((data) => {
-      console.log(data.data[0]);
-      res.locals.quote = data.data[0];
+      res.locals.quote = data.data[quoteNum];
+      console.log('in quoteController line 36,  -->', data.data[quoteNum]);
+      recentQuote.create(data.data[quoteNum]);
+      res.status(201);
+      return next();
     })
     .catch((error) => {
       console.error(error);
     });
-  res.send(res.locals.quote);
-  return next();
 };
+
+//save generated quotes to the db
+quoteController.saveQuote = (req, res, next) => {
+  savedQuote.create();
+};
+
+//input and save a quote to the db
+
+//delete a quote from the saved db
+
 module.exports = quoteController;

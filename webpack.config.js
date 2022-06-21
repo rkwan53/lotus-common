@@ -5,18 +5,30 @@ module.exports = {
   context: __dirname,
   entry: './client/index.js',
   devServer: {
-    historyApiFallback: true,
+    host: 'localhost',
+    port: 8080,
+    // match the output path
     static: {
       directory: path.resolve(__dirname, 'build'),
+      // match the output 'publicPath'
+      publicPath: '/',
     },
-    compress: true,
-    port: 8080,
-    hot: true
-  },
-  output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js',
-    publicPath: '/',
+    // enable HMR on the devServer
+    hot: true,
+    // fallback to root for other urls
+    historyApiFallback: true,
+    headers: { 'Access-Control-Allow-Origin': '*' },
+    output: {
+      path: path.resolve(__dirname, 'build'),
+      filename: 'bundle.js',
+      publicPath: '/',
+    },
+    proxy: {
+      '*': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      },
+    },
   },
 
   module: {

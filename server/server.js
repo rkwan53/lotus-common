@@ -6,10 +6,15 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const port = 3000;
-const mongoURI = process.env.URI;
+const mongoURI = process.env.currentURI;
 
-const quoteController = require('./controllers/quoteController');
-mongoose.connect(mongoURI);
+//require routers
+const routerQuotes = require('./routes/router');
+// const quoteController = require('./controllers/quoteController');
+mongoose.connect(mongoURI, { useNewUrlParser: true });
+const db = mongoose.connection;
+db.on('error', (error) => console.log(error));
+db.once('open', () => console.log('Connected to Quote Database...'));
 
 app.use(express.json());
 app.use(express.urlencoded());
@@ -18,16 +23,9 @@ app.use(express.urlencoded());
 app.use('/build', express.static(path.join(__dirname, '../build')));
 
 // serve index.html on the route '/'
-app.get('/', quoteController.getQuote, (req, res) => {
-  console.log('in get homepage');
-  // axios.get(process.env.api).then((data) => console.log(data));
-  let quote = res.locals.quote;
-  console.log('text-->', quote);
-  return res
-    .status(200)
-    .sendFile(path.resolve(__dirname, '../public/index.html'));
-});
+app.use('/api',routerQuotes)
 
+app.use('/', routerQuotes)
 /**
  * 404 handler
  */
