@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function RandomJoke() {
+function RandomQuote() {
   // const [jokeText, setJokeText] = useState('');
   // const [loaded, setLoaded] = useState(null);
 
@@ -14,8 +14,8 @@ function RandomJoke() {
   //     .catch((error) => setError(error.message));
   // }, []);
   return (
-    <div id="randomJoke">
-      <h2>Show random joke here</h2>
+    <div id="randomQuote">
+      <h2>Show random Quote here</h2>
     </div>
   );
 }
@@ -28,4 +28,4 @@ function RandomJoke() {
 //   )
 // }
 
-export default RandomJoke;
+export default RandomQuote;

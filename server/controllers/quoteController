@@ -1,0 +1,44 @@
+// import { models } from 'mongoose';
+// import { ModuleFilenameHelpers } from 'webpack';
+
+const recentQuote = require('../models/recentQuoteModel');
+const axios = require('axios');
+const quoteController = {};
+
+quoteController.getQuote = (req, res, next) => {
+  // const options = {
+  //   method: 'GET',
+  //   url: process.env.api,
+  //   params: {
+  //     'exclude-tags': 'nsfw',
+  //     keywords: 'rocket',
+  //     'min-rating': '7',
+  //     'include-tags': 'knock_knock',
+  //   },
+  // };
+
+  //   axios
+  //     .get('https://type.fit/api/quotes')
+  //     .then((response) => {
+  //       console.log(response[0]);
+  //     })
+  //     .catch(function (error) {
+  //       console.error(error);
+  //     });
+  //   res.status(204);
+  //   return next();
+  // };
+
+  axios
+    .get('https://type.fit/api/quotes')
+    .then((data) => {
+      console.log(data.data[0]);
+      res.locals.quote = data.data[0];
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  res.send(res.locals.quote);
+  return next();
+};
+module.exports = quoteController;

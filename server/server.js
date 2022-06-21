@@ -8,7 +8,7 @@ require('dotenv').config();
 const port = 3000;
 const mongoURI = process.env.URI;
 
-const textController = require('./controllers/textController');
+const quoteController = require('./controllers/quoteController');
 mongoose.connect(mongoURI);
 
 app.use(express.json());
@@ -18,11 +18,11 @@ app.use(express.urlencoded());
 app.use('/build', express.static(path.join(__dirname, '../build')));
 
 // serve index.html on the route '/'
-app.get('/', textController.getText, (req, res) => {
-  const [Text, setText] = useState('');
+app.get('/', quoteController.getQuote, (req, res) => {
   console.log('in get homepage');
   // axios.get(process.env.api).then((data) => console.log(data));
-
+  let quote = res.locals.quote;
+  console.log('text-->', quote);
   return res
     .status(200)
     .sendFile(path.resolve(__dirname, '../public/index.html'));
