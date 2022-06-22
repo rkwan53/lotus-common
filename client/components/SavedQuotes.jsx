@@ -25,10 +25,12 @@ function savedQuotes(props) {
   const quotes = [];
   for (let i = allSavedQuotes.length - 1; i >= 0; i--) {
     quotes.push(
-      <li>{`${allSavedQuotes[i].text}`}
-      <ul>
-      <li>{`--${allSavedQuotes[i].author}`}</li>
-      </ul></li>
+      <li key={i}>
+        {`${allSavedQuotes[i].text}`}
+        <ul>
+          <li>{`--${allSavedQuotes[i].author}`}</li>
+        </ul>
+      </li>
     );
   }
 
