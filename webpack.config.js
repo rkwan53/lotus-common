@@ -4,12 +4,17 @@ module.exports = {
   mode: 'development',
   context: __dirname,
   entry: './client/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'main.js',
+    publicPath: '/',
+  },
   devServer: {
     host: 'localhost',
     port: 8080,
     // match the output path
     static: {
-      directory: path.resolve(__dirname, 'build'),
+      directory: path.resolve(__dirname, 'dist'),
       // match the output 'publicPath'
       publicPath: '/',
     },
@@ -18,11 +23,6 @@ module.exports = {
     // fallback to root for other urls
     historyApiFallback: true,
     headers: { 'Access-Control-Allow-Origin': '*' },
-    output: {
-      path: path.resolve(__dirname, 'build'),
-      filename: 'bundle.js',
-      publicPath: '/',
-    },
     proxy: {
       '*': {
         target: 'http://localhost:3000/',
@@ -34,7 +34,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /.(js|jsx)$/,
         use: 'babel-loader',
       },
       {

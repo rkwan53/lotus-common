@@ -9,12 +9,11 @@ const quoteController = {};
 quoteController.getQuote = (req, res, next) => {
   //generate random number to access a quote from the API
   let quoteNum = Math.floor(Math.random() * 1500);
-  console.log('random number =', quoteNum);
   axios
     .get('https://type.fit/api/quotes')
     .then((data) => {
       res.locals.quote = data.data[quoteNum];
-      console.log('in quoteController line 36,  -->', data.data[quoteNum]);
+      console.log('in quoteController line 16,  -->', data.data[quoteNum]);
       recentQuote.create(data.data[quoteNum]);
       res.status(201);
       return next();
@@ -26,9 +25,35 @@ quoteController.getQuote = (req, res, next) => {
 
 //save generated quotes to the db
 quoteController.saveQuote = (req, res, next) => {
-  savedQuote.create();
+  console.log('in quoteController.saveQuote line 29, req.body -->', req.body);
+  savedQuote
+    .create(req.body)
+    .then((data) => {
+      res.locals.id = data.id;
+      return next();
+    })
+    .catch((error) => {
+      return next(
+        'error in quoteController.saveQuote:' + JSON.stringify(error)
+      );
+    });
 };
 
+//get all saved quotes
+quoteController.getSavedQuotes = (req, res, next) => {
+  savedQuote.find({}, (err, quotes) => {
+    // if a database error occurs, call next with the error message passed in
+    // for the express global error handler to catch
+    if (err)
+      return next(
+        'Error in userController.getAllUsers: ' + JSON.stringify(err)
+      );
+
+    console.log('find all quotes data -->', quotes);
+    res.locals.allSavedQuotes = quotes;
+    return next();
+  });
+};
 //input and save a quote to the db
 
 //delete a quote from the saved db

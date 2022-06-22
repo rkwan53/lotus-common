@@ -9,7 +9,7 @@ const port = 3000;
 const mongoURI = process.env.currentURI;
 
 //require routers
-const routerQuotes = require('./routes/router');
+const getQuotes = require('./routes/getQuote');
 // const quoteController = require('./controllers/quoteController');
 mongoose.connect(mongoURI, { useNewUrlParser: true });
 const db = mongoose.connection;
@@ -20,12 +20,19 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 // statically serve everything in the build folder on the route '/build'
-app.use('/build', express.static(path.join(__dirname, '../build')));
+
+app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
 // serve index.html on the route '/'
-app.use('/api',routerQuotes)
+app.use('/getQuote', getQuotes);
+app.use('/save', getQuotes)
+app.use('/savedQuotes', getQuotes)
 
-app.use('/', routerQuotes)
+app.get('/', (req, res, next) => {
+  return res
+    .status(200)
+    .sendFile(path.resolve(__dirname, '../../public/index.html'));
+});
 /**
  * 404 handler
  */
