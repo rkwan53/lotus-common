@@ -6,7 +6,7 @@ export default function Home() {
 
   return (
     <div className="home">
-      <h2>Digital Commonplace Book</h2>
+      <h2>Digital Commonplace Book (Quote Keeper)</h2>
       <Quote />
       <SavedQuotes />
     </div>
