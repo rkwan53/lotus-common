@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home.jsx';
 import Navbar from './components/Navbar.jsx';
 import Quote from './components/Quote.jsx';
@@ -10,7 +10,7 @@ export default function App() {
     <>
       <div className="page">
         <div className="app">
-          <BrowserRouter>
+          <HashRouter>
             <Routes>
               <Route path="/" element={<Navbar />}>
                 <Route index element={<Home />} />
@@ -18,7 +18,7 @@ export default function App() {
                 {/* <Route path="*" element={<NoPage />} /> */}
               </Route>
             </Routes>
-          </BrowserRouter>
+          </HashRouter>
         </div>
       </div>
     </>

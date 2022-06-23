@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import axios from 'axios';
 
-function Quote(props) {
+
+function Quote() {
   const [quote, setQuote] = useState({});
   const [loaded, setLoaded] = useState(false);
+  const [allSavedQuotes, setAllSavedQuotes] = useState({});
+  const [loadedAllSavedQuotes, setLoadedAllSavedQuotes] = useState(true);
 
   useEffect(() => {
     fetchQuote(); // fetch quote when component is mounted
@@ -22,17 +25,31 @@ function Quote(props) {
       .catch((error) => console.error(error));
   };
 
+  const saveThisQuote = () => {
+    axios
+      .post('/save', quote)
+      .then((response) => {
+        console.log('quote saved -->', quote);
+       
+      })
+      .catch((error) => console.error(error));
+      
+  };
+
   if (!quote.author) quote.author = 'Unknown';
   if (!loaded) {
     return <div id="loading">loading...</div>;
   } else {
     return (
-      <div id="randomQuote">
-        <h3>"{quote.text}"</h3>
-        <h4>- {quote.author}</h4>
-        <button type='button' onClick={fetchQuote}>Get New Quote</button>
-        <button>Save Quote</button>
-      </div>
+      
+        <div id="randomQuote">
+          <div id="quoteText">{quote.text}"</div>
+          <p>-- {quote.author}</p>
+          <button type="button" onClick={fetchQuote}>
+            Get New Quote
+          </button>
+          <button onClick={saveThisQuote}>Save Quote</button>
+        </div>      
     );
   }
 }

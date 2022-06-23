@@ -13,7 +13,6 @@ quoteController.getQuote = (req, res, next) => {
     .get('https://type.fit/api/quotes')
     .then((data) => {
       res.locals.quote = data.data[quoteNum];
-      console.log('in quoteController line 16,  -->', data.data[quoteNum]);
       recentQuote.create(data.data[quoteNum]);
       res.status(201);
       return next();
@@ -57,5 +56,8 @@ quoteController.getSavedQuotes = (req, res, next) => {
 //input and save a quote to the db
 
 //delete a quote from the saved db
+// quoteController.deleteQuote = (req, res) => {
+//   savedQuote.deleteOne()
+// }
 
 module.exports = quoteController;
