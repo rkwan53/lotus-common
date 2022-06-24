@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import axios from 'axios';
 import SavedQuotes from './SavedQuotes';
+import AddNoteButton from './AddNoteButton'
 
 function Quote() {
   const [quote, setQuote] = useState({});
@@ -46,6 +47,8 @@ function Quote() {
           Get New Quote
         </button>
         <button onClick={saveThisQuote}>Save Quote</button>
+        <AddNoteButton/>
+        
         <hr />
         <SavedQuotes newSavedQuote = {newSavedQuote}
         />

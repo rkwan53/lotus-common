@@ -75,3 +75,21 @@ hr {
   font-size: 22px;
   text-align: left;
 }
+
+#addNoteContainer {
+  border: 1px solid rgba(154, 154, 154, 0.361);
+  border-radius: 10px;
+  max-width: 80%;
+  display: block;
+  margin: 0 auto;
+}
+
+#addNoteForm{
+ display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+#addNoteform button {
+  width:fit-content;
+}

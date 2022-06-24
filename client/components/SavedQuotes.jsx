@@ -16,7 +16,7 @@ export function savedQuotes(props) {
       setNewSavedQuote(false);
       setLoadedAllSavedQuotes(true);
     }
-  },[]);
+  }, []);
 
   const fetchAllSavedQuotes = () => {
     axios
@@ -26,7 +26,6 @@ export function savedQuotes(props) {
         setAllSavedQuotes(data.data);
         // setAuthor(data.author);
         console.log('data-->', data.data);
-        setNewSavedQuote(false);
       })
       .catch((error) => console.error(error));
   };
@@ -56,7 +55,12 @@ export function savedQuotes(props) {
             </ul>
           </li>
 
-          <a onClick={() => handleDeleteQuote(i)}>
+          <a
+            onClick={() => {
+              handleDeleteQuote(i);
+              setNewSavedQuote(true);
+            }}
+          >
             <img
               src="https://www.pngrepo.com/png/171093/180/garbage.png"
               width="25px"
