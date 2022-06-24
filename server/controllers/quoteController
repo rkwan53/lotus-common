@@ -24,7 +24,6 @@ quoteController.getQuote = (req, res, next) => {
 
 //save generated quotes to the db
 quoteController.saveQuote = (req, res, next) => {
-  console.log('in quoteController.saveQuote line 29, req.body -->', req.body);
   savedQuote
     .create(req.body)
     .then((data) => {
@@ -48,7 +47,7 @@ quoteController.getSavedQuotes = (req, res, next) => {
         'Error in userController.getAllUsers: ' + JSON.stringify(err)
       );
 
-    console.log('find all quotes data -->', quotes);
+    // console.log('find all quotes data -->', quotes);
     res.locals.allSavedQuotes = quotes;
     return next();
   });
@@ -56,8 +55,13 @@ quoteController.getSavedQuotes = (req, res, next) => {
 //input and save a quote to the db
 
 //delete a quote from the saved db
-// quoteController.deleteQuote = (req, res) => {
-//   savedQuote.deleteOne()
-// }
+quoteController.deleteQuote = (req, res, next) => {
+  console.log('request body -->', req.body)
+  // console.log('req.body.id--->', req.body.data);
+  savedQuote.deleteOne(req.body).then(() => {
+    return next();
+  });
+  // return next();
+};
 
 module.exports = quoteController;

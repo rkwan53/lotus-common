@@ -14,7 +14,6 @@ router.get('/all', quoteController.getSavedQuotes, (req, res) => {
 
 //router for / to generate single page
 router.get('/', quoteController.getQuote, (req, res) => {
-  console.log('in router, quote -->', res.locals.quote);
   return res.send(res.locals.quote);
   // recentQuote
   //   .create(res.locals.quote)
@@ -27,16 +26,16 @@ router.get('/', quoteController.getQuote, (req, res) => {
 });
 
 //router to post
-router.post('/', quoteController.saveQuote, (req, res, next) => {
+router.post('/', quoteController.saveQuote, (req, res) => {
   return res.sendStatus(201);
   // .catch((err) => {
   //   return next('Error in quoteController.getQuote: ' + JSON.stringify(err));
   });
 
 //router to delete
-// router.delete('/', quoteController.deleteQuote, (req, res, next) => {
-//   return res.sendStatus(200);
-// })
+router.delete('/', quoteController.deleteQuote, (req, res) => {
+  return res.sendStatus(200);
+})
 //router to update/add custom quote
 
 module.exports = router;

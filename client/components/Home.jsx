@@ -7,15 +7,8 @@ export default function Home() {
   return (
     <div className="home">
       <h2 id="title">Digital Commonplace Book (Quote Keeper)</h2>
-      <Quote
-        loadedAllSavedQuotes={loadedAllSavedQuotes}
-        setLoadedAllSavedQuotes={setLoadedAllSavedQuotes}
-      />
-      <hr />
-      <SavedQuotes
-        loadedAllSavedQuotes={loadedAllSavedQuotes}
-        setLoadedAllSavedQuotes={setLoadedAllSavedQuotes}
-      />
+      <Quote/>
+    
     </div>
   );
 }

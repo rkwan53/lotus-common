@@ -2,12 +2,21 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export function savedQuotes(props) {
+  console.log('props', props);
   const [allSavedQuotes, setAllSavedQuotes] = useState({});
   const [loadedAllSavedQuotes, setLoadedAllSavedQuotes] = useState(false);
-
+  const [newSavedQuote, setNewSavedQuote] = useState(props.newSavedQuote);
   useEffect(() => {
     fetchAllSavedQuotes(); // fetch quote when component is mounted
   }, []);
+
+  useEffect(() => {
+    if (props.newSavedQuote) {
+      fetchAllSavedQuotes();
+      setNewSavedQuote(false);
+      setLoadedAllSavedQuotes(true);
+    }
+  },[]);
 
   const fetchAllSavedQuotes = () => {
     axios
@@ -17,17 +26,22 @@ export function savedQuotes(props) {
         setAllSavedQuotes(data.data);
         // setAuthor(data.author);
         console.log('data-->', data.data);
-        setLoadedAllSavedQuotes(true);
+        setNewSavedQuote(false);
       })
       .catch((error) => console.error(error));
   };
 
-  const handleDeleteQuote = (e) => {
-    console.log(e.target);
-    let quoteToDelete = document.getElementById('quoteText');
-    axios.delete('/').then((data) => {
-      console.log('deleted quote').then(fetchAllSavedQuotes());
-    });
+  const handleDeleteQuote = (quotenum) => {
+    const quoteToDelete = allSavedQuotes[quotenum];
+    console.log('delete this quote-->', quoteToDelete);
+    const { _id } = quoteToDelete;
+    console.log('id-->', _id);
+    axios.delete('/delete', { data: { _id } });
+    // .then(() => {
+    //   setLoadedAllSavedQuotes(false);
+    // });
+    setLoadedAllSavedQuotes(false);
+    fetchAllSavedQuotes();
   };
 
   const quotes = [];
@@ -42,9 +56,8 @@ export function savedQuotes(props) {
             </ul>
           </li>
 
-          <a onClick={handleDeleteQuote}>
+          <a onClick={() => handleDeleteQuote(i)}>
             <img
-              quotenum={i}
               src="https://www.pngrepo.com/png/171093/180/garbage.png"
               width="25px"
             />

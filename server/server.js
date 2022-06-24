@@ -23,10 +23,11 @@ app.use(express.urlencoded());
 
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
-// serve index.html on the route '/'
+
 app.use('/getQuote', getQuotes);
 app.use('/save', getQuotes)
 app.use('/savedQuotes', getQuotes)
+app.use('/delete', getQuotes)
 
 app.get('/', (req, res, next) => {
   return res
