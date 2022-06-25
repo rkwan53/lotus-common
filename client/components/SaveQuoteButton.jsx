@@ -1,10 +1,14 @@
 import React from 'react';
 
-export default function SaveNote(){
+export default function SaveNote({ saveThisQuote }) {
   return (
-    <button>Save Quote</button>
-      // {/* onClick={saveThisQuote} */}
-
-  
-  )
+    <button
+      onClick={(e) => {
+        e.preventDefault();
+        saveThisQuote();
+      }}
+    >
+      Save Quote
+    </button>
+  );
 }

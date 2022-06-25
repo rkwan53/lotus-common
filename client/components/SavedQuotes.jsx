@@ -1,34 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export function savedQuotes(props) {
-  console.log('props', props);
-  const [allSavedQuotes, setAllSavedQuotes] = useState({});
+export function savedQuotes({ allSavedQuotes, fetchAllSavedQuotes }) {
+  // const [allSavedQuotes, setAllSavedQuotes] = useState({});
   const [loadedAllSavedQuotes, setLoadedAllSavedQuotes] = useState(false);
-  const [newSavedQuote, setNewSavedQuote] = useState(props.newSavedQuote);
+  // const [newSavedQuote, setNewSavedQuote] = useState(props.newSavedQuote);
   useEffect(() => {
     fetchAllSavedQuotes(); // fetch quote when component is mounted
   }, []);
 
-  useEffect(() => {
-    if (props.newSavedQuote) {
-      fetchAllSavedQuotes();
-      setNewSavedQuote(false);
-      setLoadedAllSavedQuotes(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (newSavedQuote) {
+  //     fetchAllSavedQuotes();
+  //   }
+  // }, [newSavedQuote]);
 
-  const fetchAllSavedQuotes = () => {
-    axios
-      .get('/savedQuotes/all')
-      .then((data) => {
-        console.log('data ->', data.data);
-        setAllSavedQuotes(data.data);
-        // setAuthor(data.author);
-        console.log('data-->', data.data);
-      })
-      .catch((error) => console.error(error));
-  };
+  
 
   const handleDeleteQuote = (quotenum) => {
     const quoteToDelete = allSavedQuotes[quotenum];
@@ -58,7 +45,7 @@ export function savedQuotes(props) {
           <a
             onClick={() => {
               handleDeleteQuote(i);
-              setNewSavedQuote(true);
+              // setNewSavedQuote(true);
             }}
           >
             <img

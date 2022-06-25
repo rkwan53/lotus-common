@@ -11,7 +11,7 @@ export default function Navbar() {
         </span>
 
         <span>
-          <Link to="/savedquotes">Saved Quotes</Link>
+          <Link to="/savedquotes">Edit Saved Quotes</Link>
         </span>
       </nav>
 

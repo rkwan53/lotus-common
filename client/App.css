@@ -15,6 +15,7 @@ li {
 }
 
 button {
+  display: inline;
   margin: 10px;
 }
 
@@ -28,9 +29,9 @@ hr {
 }
 .app {
   display: block;
-  margin: 0 auto;
+  margin: 50px auto;
   margin-top: 20px;
-  max-width: 80%;
+  max-width: 700px;
   border: 1px solid rgba(99, 99, 160, 0.161);
   border-radius: 9px;
   padding: 30px;
@@ -58,7 +59,7 @@ hr {
 }
 
 #title,
-#randomQuote {
+#randomNewQuote {
   text-align: center;
 }
 
@@ -95,8 +96,10 @@ hr {
   padding: 30px;
 }
 
-#addNoteForm button {
+#thoughtFormBtns {
   width: fit-content;
+  text-align: center;
+  margin: 0 auto;
 }
 
 #actionBtns {
