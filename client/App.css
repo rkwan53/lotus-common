@@ -21,6 +21,11 @@ button {
 hr {
   color: rgb(199, 191, 229);
 }
+
+#home {
+  display: flex;
+  flex-direction: column;
+}
 .app {
   display: block;
   margin: 0 auto;
@@ -84,12 +89,19 @@ hr {
   margin: 0 auto;
 }
 
-#addNoteForm{
- display: flex;
+#addNoteForm {
+  display: flex;
   flex-direction: column;
   padding: 30px;
 }
 
-#addNoteform button {
-  width:fit-content;
+#addNoteForm button {
+  width: fit-content;
+}
+
+#actionBtns {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  text-align: center;
 }

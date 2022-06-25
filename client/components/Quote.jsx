@@ -43,15 +43,8 @@ function Quote() {
       <div id="randomQuote">
         <div id="quoteText">{quote.text}"</div>
         <p>-- {quote.author}</p>
-        <button type="button" onClick={fetchQuote}>
-          Get New Quote
-        </button>
-        <button onClick={saveThisQuote}>Save Quote</button>
-        <AddNoteButton/>
+    
         
-        <hr />
-        <SavedQuotes newSavedQuote = {newSavedQuote}
-        />
       </div>
     );
   }

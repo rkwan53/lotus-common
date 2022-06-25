@@ -2,7 +2,7 @@ import React, { useState} from 'react';
 
  
 
-export default function AddNote(){
+export default function AddNoteButton(){
   const [ showForm, setShowForm ] = useState(false)
 
 //  const btn = document.getElementById('addNoteBtn');
