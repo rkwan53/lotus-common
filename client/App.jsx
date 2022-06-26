@@ -5,6 +5,8 @@ import Home from './components/Home.jsx';
 import Navbar from './components/Navbar.jsx';
 import Quote from './components/Quote.jsx';
 import './App.css';
+
+
 export default function App() {
   return (
     <>

@@ -8,7 +8,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
     // sets the name of the DB that our collections are part of
-    dbName: 'starwars',
+    dbName: 'SavedQuotes',
   })
   .then(() => console.log('Connected to Mongo DB.'))
   .catch((err) => console.log(err));
@@ -16,6 +16,8 @@ mongoose
 const savedQuoteSchema = new Schema({
   text: { type: String, required: true },
   author: { type: String, required: false},
+  comments: {type: String, required: false},
+  tags: {type: String, required: false}
 });
 
 module.exports = mongoose.model('savedQuote', savedQuoteSchema);

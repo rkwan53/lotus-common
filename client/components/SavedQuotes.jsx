@@ -15,8 +15,6 @@ export function savedQuotes({ allSavedQuotes, fetchAllSavedQuotes }) {
   //   }
   // }, [newSavedQuote]);
 
-  
-
   const handleDeleteQuote = (quotenum) => {
     const quoteToDelete = allSavedQuotes[quotenum];
     console.log('delete this quote-->', quoteToDelete);
