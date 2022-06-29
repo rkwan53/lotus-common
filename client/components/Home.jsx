@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Quote from './Quote.jsx';
 import SavedQuotes from './SavedQuotes.jsx';
-import AddNoteButton from './AddNoteButton.jsx';
-import GetNewQuoteButton from './GetNewQuoteButton.jsx';
-import SaveQuote from './SaveQuoteButton.jsx';
+import AddNoteButton from './buttons/AddNoteButton.jsx';
+import GetNewQuoteButton from './buttons/GetNewQuoteButton.jsx';
+import SaveQuote from './buttons/SaveQuoteButton.jsx';
 import { useForm } from './useForm.jsx';
 
 export default function Home() {

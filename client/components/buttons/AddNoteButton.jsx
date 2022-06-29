@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useForm } from './useForm';
+import { useForm } from '../useForm';
 
 export default function AddNoteButton({ setNewNote, handleAddNote }) {
   const [showForm, setShowForm] = useState(false);
